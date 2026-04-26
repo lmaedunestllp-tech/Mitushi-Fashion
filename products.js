@@ -20,13 +20,13 @@ const products = [
   {
     id: 1,
     name: "Floral Anarkali Kurti",
-    price: 499,
-    originalPrice: 650,
+    price: 701,
+    originalPrice: 779,
     fabric: "Cotton",
-    desc: "Soft cotton, summer floral print, perfect for daily wear",
+    desc: "Soft cotton, Premium Comfort Fabric, wide Palazzos",
     photo: "16E7lzestvZRtQ_-gt_eaZ_SVjaTBNoac", // 👈 Yahan apna Google Drive File ID daalo
-    colors: ["Red", "Pink", "Yellow"],
-    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: ["Peacock Green"],
+    sizes: ["M", "L", "XL",],
     category: "casual",
     badge: "NEW",
     inStock: true
