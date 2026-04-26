@@ -23,7 +23,7 @@ const products = [
     price: 701,
     originalPrice: 779,
     fabric: "Cotton",
-    desc: "Eas to Wear, Premium Comfort Fabric, wide Palazzos",
+    desc: "Easy to Wear, Premium Comfort Fabric, wide Palazzos",
     photo: "16E7lzestvZRtQ_-gt_eaZ_SVjaTBNoac", // 👈 Yahan apna Google Drive File ID daalo
     colors: ["Peacock Green"],
     sizes: ["M", "L", "XL",],
