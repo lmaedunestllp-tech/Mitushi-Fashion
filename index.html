@@ -345,42 +345,6 @@ body{
   </select>
 </div>
 
-  <div class="guide-head" onclick="toggleGuide()">
-    <span style="font-size:20px">📸</span>
-    <h3>Google Drive Photo Kaise Add Karein? (Tap to open)</h3>
-    <span style="margin-left:auto;font-size:18px" id="guideArrow">▼</span>
-  </div>
-  <div class="guide-body" id="guideBody">
-    <div class="step-g">
-      <div class="snum">1</div>
-      <div class="stxt">Google Drive open karo aur <strong>kurti ki photo upload karo</strong></div>
-    </div>
-    <div class="step-g">
-      <div class="snum">2</div>
-      <div class="stxt">Photo par <strong>right click</strong> karo → <strong>"Share"</strong> select karo</div>
-    </div>
-    <div class="step-g">
-      <div class="snum">3</div>
-      <div class="stxt"><strong>"General access"</strong> mein <code>Anyone with the link</code> select karo → <strong>Done</strong></div>
-    </div>
-    <div class="step-g">
-      <div class="snum">4</div>
-      <div class="stxt">Link copy karo — kuch aisa dikhega:<br>
-        <code>drive.google.com/file/d/<strong>1ABC...XYZ</strong>/view</code><br>
-        Beech wala bold part hi <strong>File ID</strong> hai
-      </div>
-    </div>
-    <div class="step-g">
-      <div class="snum">5</div>
-      <div class="stxt"><code>products.js</code> file open karo aur har product ka <strong>photo:</strong> field mein woh File ID daalo</div>
-    </div>
-    <div class="step-g">
-      <div class="snum">6</div>
-      <div class="stxt">File save karo → GitHub pe push karo → site automatically update ho jaayegi! 🎉</div>
-    </div>
-  </div>
-</div>
-
 <!-- PRODUCT GRID -->
 <div class="grid" id="grid"></div>
 
@@ -628,14 +592,6 @@ function submitOrder() {
 
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
   closeM();
-}
-
-// ── GUIDE ──
-function toggleGuide() {
-  const b = document.getElementById('guideBody');
-  const a = document.getElementById('guideArrow');
-  b.classList.toggle('open');
-  a.textContent = b.classList.contains('open') ? '▲' : '▼';
 }
 
 // ── INIT ──
