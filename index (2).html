@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Mitushi Fashion – Kurtis Collection</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rose:      #c2185b;
+  --rose-l:    #f06292;
+  --rose-d:    #880e4f;
+  --gold:      #f9a825;
+  --gold-l:    #fff8e1;
+  --cream:     #fff9f5;
+  --soft:      #fce4ec;
+  --deep:      #1a0a0f;
+  --gray:      #777;
+  --white:     #ffffff;
+  --green:     #25D366;
+  --green-d:   #128C7E;
+  --shadow:    0 4px 20px rgba(194,24,91,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--cream);
+  color:var(--deep);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── HEADER ── */
+.hdr{
+  background:linear-gradient(135deg,#6d0032 0%,var(--rose-d) 40%,var(--rose) 100%);
+  padding:16px 18px 14px;
+  text-align:center;
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 6px 24px rgba(136,14,79,.4);
+}
+.hdr-tag{font-size:9.5px;letter-spacing:3px;color:var(--rose-l);text-transform:uppercase;margin-bottom:1px;}
+.hdr-name{
+  font-family:'Playfair Display',serif;
+  font-size:30px;font-weight:900;color:#fff;
+  letter-spacing:.5px;line-height:1;
+}
+.hdr-name em{color:var(--gold);font-style:italic;}
+.hdr-sub{font-size:10.5px;color:rgba(255,255,255,.72);margin-top:3px;letter-spacing:.8px;}
+
+/* ── FILTER BAR ── */
+.fbar{
+  background:#fff;
+  padding:11px 14px 10px;
+  border-bottom:2px solid var(--soft);
+  position:sticky;top:86px;z-index:90;
+  box-shadow:0 3px 12px rgba(0,0,0,.06);
+}
+.search{
+  display:flex;align-items:center;
+  background:var(--soft);border-radius:28px;
+  padding:8px 14px;gap:7px;margin-bottom:9px;
+}
+.search input{
+  border:none;background:transparent;
+  font-family:'DM Sans',sans-serif;font-size:13.5px;
+  color:var(--deep);flex:1;outline:none;
+}
+.search input::placeholder{color:#bbb;}
+.chips{display:flex;gap:7px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none;}
+.chips::-webkit-scrollbar{display:none;}
+.chip{
+  background:var(--soft);color:var(--rose-d);
+  border:1.5px solid #f8adc8;border-radius:20px;
+  padding:5px 13px;font-size:11.5px;font-weight:600;
+  cursor:pointer;white-space:nowrap;flex-shrink:0;
+  transition:all .18s;
+}
+.chip.on,.chip:active{background:var(--rose);color:#fff;border-color:var(--rose);}
+
+/* ── STATS ── */
+.stats{
+  background:var(--soft);padding:8px 16px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.stats span{font-size:12px;font-weight:600;color:var(--rose-d);}
+.stats select{
+  border:1.5px solid #f8adc8;border-radius:7px;
+  padding:4px 7px;font-size:11.5px;color:var(--rose-d);
+  background:#fff;cursor:pointer;outline:none;
+}
+
+/* ── GRID ── */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;padding:14px;
+}
+
+/* ── CARD ── */
+.card{
+  background:#fff;border-radius:16px;overflow:hidden;
+  border:1.5px solid #f5dde8;
+  box-shadow:0 2px 10px rgba(194,24,91,.07);
+  transition:transform .2s,box-shadow .2s;
+  position:relative;cursor:pointer;
+}
+.card:active{transform:scale(.97);}
+.badge{
+  position:absolute;top:9px;left:9px;z-index:2;
+  font-size:8.5px;font-weight:800;letter-spacing:.5px;
+  padding:3px 8px;border-radius:10px;color:#fff;
+  background:var(--rose);
+}
+.badge.new{background:#2e7d32;}
+.badge.sale{background:#b71c1c;}
+
+/* Card image — Google Drive thumbnail */
+.card-img{
+  width:100%;height:195px;
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#fce4ec,#f8bbd0);
+}
+.card-img img{
+  width:100%;height:100%;object-fit:cover;
+  display:block;
+  transition:transform .35s ease;
+}
+.card:hover .card-img img{transform:scale(1.04);}
+.img-fallback{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:6px;
+}
+.img-fallback .emo{font-size:54px;}
+.img-fallback small{font-size:10px;color:var(--rose);font-weight:600;}
+
+.card-body{padding:10px 11px 11px;}
+.card-name{
+  font-family:'Playfair Display',serif;
+  font-size:13.5px;font-weight:700;color:var(--deep);
+  margin-bottom:3px;line-height:1.3;
+}
+.card-desc{font-size:10px;color:var(--gray);margin-bottom:6px;line-height:1.4;}
+.price-row{display:flex;align-items:baseline;gap:5px;margin-bottom:5px;}
+.price{font-size:17px;font-weight:800;color:var(--rose-d);}
+.price-og{font-size:11px;color:#bbb;text-decoration:line-through;}
+.discount{font-size:10px;font-weight:700;color:#2e7d32;background:#e8f5e9;padding:1px 5px;border-radius:5px;}
+.colors{display:flex;gap:4px;align-items:center;margin-bottom:8px;}
+.cdot{width:11px;height:11px;border-radius:50%;border:1.5px solid rgba(0,0,0,.1);}
+.clabel{font-size:9px;color:var(--gray);margin-left:1px;}
+.btn-order{
+  width:100%;
+  background:linear-gradient(90deg,var(--rose-d),var(--rose));
+  color:#fff;border:none;border-radius:10px;
+  padding:9px;font-family:'DM Sans',sans-serif;
+  font-size:12.5px;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  transition:all .2s;letter-spacing:.2px;
+}
+.btn-order:active{transform:scale(.97);}
+
+/* ── MODAL OVERLAY ── */
+.overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(26,10,15,.65);z-index:999;
+  align-items:flex-end;justify-content:center;
+}
+.overlay.open{display:flex;animation:fadeIn .2s;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+.modal{
+  background:#fff;border-radius:24px 24px 0 0;
+  padding:22px 18px 36px;width:100%;max-width:480px;
+  max-height:92vh;overflow-y:auto;
+  animation:slideUp .28s ease;
+}
+@keyframes slideUp{
+  from{transform:translateY(70px);opacity:0;}
+  to{transform:translateY(0);opacity:1;}
+}
+.m-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.m-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;}
+.m-close{
+  background:var(--soft);border:none;border-radius:50%;
+  width:32px;height:32px;font-size:17px;cursor:pointer;
+  color:var(--rose-d);display:flex;align-items:center;justify-content:center;
+}
+
+/* Product preview in modal */
+.m-product{
+  background:var(--soft);border-radius:14px;
+  padding:12px;margin-bottom:16px;
+  display:flex;gap:12px;align-items:center;
+}
+.m-thumb{
+  width:72px;height:72px;border-radius:10px;
+  overflow:hidden;background:#f8bbd0;flex-shrink:0;
+}
+.m-thumb img{width:100%;height:100%;object-fit:cover;}
+.m-thumb .emo2{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;}
+.m-pname{font-family:'Playfair Display',serif;font-size:14.5px;font-weight:700;color:var(--deep);margin-bottom:2px;}
+.m-pfabric{font-size:10.5px;color:var(--gray);margin-bottom:3px;}
+.m-pprice{font-size:19px;font-weight:800;color:var(--rose-d);}
+
+/* Form */
+.flabel{font-size:11px;font-weight:700;color:var(--rose-d);text-transform:uppercase;letter-spacing:.8px;margin-bottom:5px;display:block;}
+.fgroup{margin-bottom:13px;}
+.finput,.ftextarea{
+  width:100%;border:2px solid #f0d0dc;border-radius:10px;
+  padding:10px 13px;font-family:'DM Sans',sans-serif;
+  font-size:14px;color:var(--deep);background:#fff;
+  outline:none;transition:border-color .2s;
+}
+.finput:focus,.ftextarea:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(194,24,91,.08);}
+.ftextarea{resize:vertical;min-height:65px;}
+
+.sz-row{display:flex;gap:7px;flex-wrap:wrap;}
+.sz-btn{
+  padding:7px 13px;border-radius:8px;
+  border:2px solid #f0d0dc;background:#fff;
+  font-size:13px;font-weight:700;cursor:pointer;
+  color:var(--rose-d);transition:all .18s;
+}
+.sz-btn.sel{background:var(--rose);color:#fff;border-color:var(--rose);}
+
+.qty-row{display:flex;align-items:center;gap:14px;}
+.qty-btn{
+  width:34px;height:34px;border-radius:50%;
+  border:2px solid var(--rose);background:#fff;
+  font-size:20px;font-weight:700;color:var(--rose);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .18s;
+}
+.qty-btn:active{background:var(--rose);color:#fff;}
+.qty-n{font-size:20px;font-weight:700;color:var(--deep);min-width:26px;text-align:center;}
+
+.btn-wa{
+  width:100%;
+  background:linear-gradient(90deg,var(--green-d),var(--green));
+  color:#fff;border:none;border-radius:12px;
+  padding:14px;font-family:'DM Sans',sans-serif;
+  font-size:15px;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  margin-top:6px;transition:all .2s;letter-spacing:.2px;
+}
+.btn-wa:active{transform:scale(.98);}
+.wa-note{text-align:center;font-size:10.5px;color:var(--gray);margin-top:7px;}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float{
+  position:fixed;bottom:18px;right:16px;
+  background:var(--green);color:#fff;
+  border-radius:50px;padding:11px 17px;
+  font-size:12.5px;font-weight:700;
+  display:flex;align-items:center;gap:7px;
+  box-shadow:0 4px 20px rgba(37,211,102,.55);
+  text-decoration:none;z-index:200;
+  animation:pulse 2.5s infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.55);}
+  50%{box-shadow:0 4px 32px rgba(37,211,102,.85);}
+}
+
+/* ── EMPTY ── */
+.empty{text-align:center;padding:48px 20px;grid-column:1/-1;color:var(--gray);}
+.empty .emo{font-size:52px;margin-bottom:10px;}
+
+/* ── FOOTER ── */
+.footer{
+  text-align:center;padding:20px 16px;
+  font-size:10.5px;color:#aaa;
+  border-top:1px solid #f5dde8;margin-top:8px;
+}
+.footer strong{color:var(--rose);}
+
+/* ── GUIDE SECTION ── */
+.guide{
+  margin:14px;border-radius:16px;overflow:hidden;
+  border:2px solid var(--gold);
+}
+.guide-head{
+  background:linear-gradient(90deg,var(--gold),#ffca28);
+  padding:12px 16px;
+  display:flex;align-items:center;gap:8px;
+  cursor:pointer;
+}
+.guide-head h3{font-size:14px;font-weight:800;color:var(--deep);}
+.guide-body{background:var(--gold-l);padding:0 16px;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s;}
+.guide-body.open{max-height:800px;padding:14px 16px;}
+.step-g{display:flex;gap:10px;margin-bottom:12px;align-items:flex-start;}
+.snum{
+  min-width:26px;height:26px;border-radius:50%;
+  background:var(--rose);color:#fff;
+  font-size:12px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.stxt{font-size:12.5px;color:var(--deep);line-height:1.5;}
+.stxt strong{color:var(--rose-d);}
+.stxt code{
+  background:rgba(194,24,91,.08);color:var(--rose-d);
+  font-size:11px;padding:1px 5px;border-radius:4px;
+  font-family:monospace;
+}
+
+@media(max-width:360px){
+  .hdr-name{font-size:26px;}
+  .grid{gap:9px;padding:10px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-tag">✨ Home Collection · Handcrafted ✨</div>
+  <div class="hdr-name">Mitushi <em>Fashion</em></div>
+  <div class="hdr-sub">हस्तनिर्मित कुर्ती · घर से · Pune</div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="fbar">
+  <div class="search">
+    <span>🔍</span>
+    <input type="text" id="srch" placeholder="Search karo — cotton, floral, silk..." oninput="render()">
+  </div>
+  <div class="chips">
+    <div class="chip on" onclick="setF('all',this)">सब / All</div>
+    <div class="chip" onclick="setF('200-500',this)">₹200–500</div>
+    <div class="chip" onclick="setF('500-1000',this)">₹500–1000</div>
+    <div class="chip" onclick="setF('casual',this)">Casual</div>
+    <div class="chip" onclick="setF('festive',this)">Festive</div>
+    <div class="chip" onclick="setF('party',this)">Party</div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <span id="cnt">Loading...</span>
+  <select id="srt" onchange="render()">
+    <option value="def">Sort: Default</option>
+    <option value="lo">Price ↑ Low to High</option>
+    <option value="hi">Price ↓ High to Low</option>
+  </select>
+</div>
+
+<!-- HOW TO ADD PHOTOS GUIDE (collapsible) -->
+<div class="guide">
+  <div class="guide-head" onclick="toggleGuide()">
+    <span style="font-size:20px">📸</span>
+    <h3>Google Drive Photo Kaise Add Karein? (Tap to open)</h3>
+    <span style="margin-left:auto;font-size:18px" id="guideArrow">▼</span>
+  </div>
+  <div class="guide-body" id="guideBody">
+    <div class="step-g">
+      <div class="snum">1</div>
+      <div class="stxt">Google Drive open karo aur <strong>kurti ki photo upload karo</strong></div>
+    </div>
+    <div class="step-g">
+      <div class="snum">2</div>
+      <div class="stxt">Photo par <strong>right click</strong> karo → <strong>"Share"</strong> select karo</div>
+    </div>
+    <div class="step-g">
+      <div class="snum">3</div>
+      <div class="stxt"><strong>"General access"</strong> mein <code>Anyone with the link</code> select karo → <strong>Done</strong></div>
+    </div>
+    <div class="step-g">
+      <div class="snum">4</div>
+      <div class="stxt">Link copy karo — kuch aisa dikhega:<br>
+        <code>drive.google.com/file/d/<strong>1ABC...XYZ</strong>/view</code><br>
+        Beech wala bold part hi <strong>File ID</strong> hai
+      </div>
+    </div>
+    <div class="step-g">
+      <div class="snum">5</div>
+      <div class="stxt"><code>products.js</code> file open karo aur har product ka <strong>photo:</strong> field mein woh File ID daalo</div>
+    </div>
+    <div class="step-g">
+      <div class="snum">6</div>
+      <div class="stxt">File save karo → GitHub pe push karo → site automatically update ho jaayegi! 🎉</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT GRID -->
+<div class="grid" id="grid"></div>
+
+<!-- ORDER MODAL -->
+<div class="overlay" id="modal">
+  <div class="modal">
+    <div class="m-top">
+      <div class="m-title">🛍️ Order Karo</div>
+      <button class="m-close" onclick="closeM()">✕</button>
+    </div>
+
+    <!-- Product info preview -->
+    <div class="m-product" id="mProd"></div>
+
+    <!-- Size -->
+    <div class="fgroup">
+      <label class="flabel">📐 Size Chuniye *</label>
+      <div class="sz-row" id="szRow"></div>
+    </div>
+
+    <!-- Qty -->
+    <div class="fgroup">
+      <label class="flabel">🔢 Kitni Chahiye / Quantity</label>
+      <div class="qty-row">
+        <button class="qty-btn" onclick="chgQ(-1)">−</button>
+        <div class="qty-n" id="qn">1</div>
+        <button class="qty-btn" onclick="chgQ(1)">+</button>
+      </div>
+    </div>
+
+    <!-- Name -->
+    <div class="fgroup">
+      <label class="flabel">👤 Aapka Naam *</label>
+      <input class="finput" id="cName" type="text" placeholder="Apna poora naam likho">
+    </div>
+
+    <!-- Mobile -->
+    <div class="fgroup">
+      <label class="flabel">📱 Mobile Number *</label>
+      <input class="finput" id="cMob" type="tel" maxlength="10" placeholder="10 digit number">
+    </div>
+
+    <!-- Address -->
+    <div class="fgroup">
+      <label class="flabel">📍 Delivery Address *</label>
+      <textarea class="ftextarea" id="cAddr" placeholder="Ghar ka poora address, area, pin code..."></textarea>
+    </div>
+
+    <!-- Note -->
+    <div class="fgroup">
+      <label class="flabel">💬 Koi Special Request?</label>
+      <input class="finput" id="cNote" type="text" placeholder="Color choice, urgent delivery, etc.">
+    </div>
+
+    <!-- Submit -->
+    <button class="btn-wa" onclick="submitOrder()">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="white">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      WhatsApp pe Order Bhejo
+    </button>
+    <div class="wa-note">✓ Order + Photo link seedha aapke WhatsApp pe aayega &nbsp;|&nbsp; COD Available</div>
+  </div>
+</div>
+
+<!-- WA Float -->
+<a class="wa-float" id="waBtn" href="#" target="_blank">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  Chat on WhatsApp
+</a>
+
+<div class="footer">
+  Made with ❤️ for <strong>Mitushi Fashion</strong><br>
+  <span>Home Kurtis · COD Available · Doorstep Delivery · Pune</span>
+</div>
+
+<!-- Load products data -->
+<script src="products.js"></script>
+
+<script>
+// ── CONSTANTS ──
+const WA = WHATSAPP_NUMBER; // from products.js
+const colorMap = {
+  Red:'#e53935',Pink:'#e91e8c',Yellow:'#f9a825',Blue:'#1565c0',
+  White:'#f5f5f5',Green:'#2e7d32',Orange:'#e64a19',Cream:'#fff8e1',
+  Maroon:'#880e4f',Gold:'#f57f17',Navy:'#0d47a1',Purple:'#6a1b9a',
+  Teal:'#00695c',Peach:'#ffccbc',Black:'#212121',Coral:'#ff5722'
+};
+
+// Google Drive thumbnail URL
+function driveImg(fileId) {
+  return `https://drive.google.com/thumbnail?id=${fileId}&sz=w400`;
+}
+
+// ── STATE ──
+let curFilter = 'all';
+let curProd   = null;
+let selSize   = '';
+let qty       = 1;
+
+// ── FILTER ──
+function setF(f, el) {
+  curFilter = f;
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  render();
+}
+
+function filtered() {
+  const q   = document.getElementById('srch').value.toLowerCase();
+  const srt = document.getElementById('srt').value;
+  let arr   = products.filter(p => {
+    const mq = !q || p.name.toLowerCase().includes(q) ||
+               p.desc.toLowerCase().includes(q) ||
+               p.fabric.toLowerCase().includes(q) ||
+               p.category.toLowerCase().includes(q);
+    const mf = curFilter === 'all' ||
+               (curFilter === '200-500'  && p.price >= 200 && p.price <= 500) ||
+               (curFilter === '500-1000' && p.price > 500  && p.price <= 1000) ||
+               p.category === curFilter;
+    return mq && mf && p.inStock;
+  });
+  if (srt === 'lo') arr.sort((a,b) => a.price - b.price);
+  if (srt === 'hi') arr.sort((a,b) => b.price - a.price);
+  return arr;
+}
+
+// ── RENDER ──
+function render() {
+  const list = filtered();
+  document.getElementById('cnt').textContent = list.length + ' kurtis available';
+  const g = document.getElementById('grid');
+
+  if (!list.length) {
+    g.innerHTML = '<div class="empty"><div class="emo">🔍</div><p>Koi kurti nahi mili.<br>Filter change karo.</p></div>';
+    return;
+  }
+
+  g.innerHTML = list.map(p => {
+    const disc = Math.round((1 - p.price / p.originalPrice) * 100);
+    const imgHtml = p.photo && !p.photo.includes('XXXXXXX')
+      ? `<img src="${driveImg(p.photo)}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+      : '';
+    const fallback = `<div class="img-fallback" ${imgHtml ? 'style="display:none"' : ''}><div class="emo">👗</div><small>Photo coming soon</small></div>`;
+
+    return `
+    <div class="card" onclick="openM(${p.id})">
+      ${p.badge ? `<div class="badge ${p.badge==='NEW'?'new':p.badge==='SALE'?'sale':''}">${p.badge}</div>` : ''}
+      <div class="card-img">${imgHtml}${fallback}</div>
+      <div class="card-body">
+        <div class="card-name">${p.name}</div>
+        <div class="card-desc">${p.fabric} · ${p.desc}</div>
+        <div class="price-row">
+          <div class="price">₹${p.price}</div>
+          <div class="price-og">₹${p.originalPrice}</div>
+          ${disc > 0 ? `<div class="discount">${disc}% off</div>` : ''}
+        </div>
+        <div class="colors">
+          ${p.colors.slice(0,5).map(c=>`<div class="cdot" style="background:${colorMap[c]||'#999'}" title="${c}"></div>`).join('')}
+          <span class="clabel">${p.colors.slice(0,3).join(', ')}</span>
+        </div>
+        <button class="btn-order" onclick="event.stopPropagation();openM(${p.id})">🛍️ Order Now</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── MODAL ──
+function openM(id) {
+  curProd  = products.find(p => p.id === id);
+  selSize  = '';
+  qty      = 1;
+  document.getElementById('qn').textContent = 1;
+  ['cName','cMob','cAddr','cNote'].forEach(i => document.getElementById(i).value = '');
+
+  // product preview
+  const imgHtml = curProd.photo && !curProd.photo.includes('XXXXXXX')
+    ? `<img src="${driveImg(curProd.photo)}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">`
+    : `<div class="emo2">👗</div>`;
+
+  document.getElementById('mProd').innerHTML = `
+    <div class="m-thumb">${imgHtml}</div>
+    <div>
+      <div class="m-pname">${curProd.name}</div>
+      <div class="m-pfabric">${curProd.fabric} · ${curProd.colors.join(', ')}</div>
+      <div class="m-pprice">₹${curProd.price}</div>
+    </div>`;
+
+  // sizes
+  document.getElementById('szRow').innerHTML = curProd.sizes.map(s =>
+    `<button class="sz-btn" onclick="pickSz('${s}',this)">${s}</button>`
+  ).join('');
+
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeM() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function pickSz(s, el) {
+  selSize = s;
+  document.querySelectorAll('.sz-btn').forEach(b => b.classList.remove('sel'));
+  el.classList.add('sel');
+}
+
+function chgQ(d) {
+  qty = Math.max(1, qty + d);
+  document.getElementById('qn').textContent = qty;
+}
+
+// ── SUBMIT ORDER ──
+function submitOrder() {
+  const name  = document.getElementById('cName').value.trim();
+  const mob   = document.getElementById('cMob').value.trim();
+  const addr  = document.getElementById('cAddr').value.trim();
+  const note  = document.getElementById('cNote').value.trim();
+
+  if (!name || !mob || !addr) { alert('⚠️ Naam, mobile aur address zaroori hai!'); return; }
+  if (!/^\d{10}$/.test(mob))  { alert('⚠️ 10 digit ka sahi mobile number daao!'); return; }
+  if (!selSize)                { alert('⚠️ Pehle size select karo!'); return; }
+
+  const total    = curProd.price * qty;
+  const photoURL = (curProd.photo && !curProd.photo.includes('XXXXXXX'))
+    ? `\n📸 *Product Photo:* https://drive.google.com/file/d/${curProd.photo}/view`
+    : '';
+
+  const msg = `🛍️ *MITUSHI FASHION – NEW ORDER!*
+
+━━━━━━━━━━━━━━━━━━
+🧥 *Kurti:* ${curProd.name}
+🪡 *Fabric:* ${curProd.fabric}
+💰 *Price:* ₹${curProd.price} × ${qty} = *₹${total}*
+📐 *Size:* ${selSize}${photoURL}
+━━━━━━━━━━━━━━━━━━
+👤 *Customer:* ${name}
+📱 *Mobile:* ${mob}
+📍 *Address:* ${addr}${note ? `\n💬 *Note:* ${note}` : ''}
+━━━━━━━━━━━━━━━━━━
+✅ COD order — please confirm!`;
+
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
+  closeM();
+}
+
+// ── GUIDE ──
+function toggleGuide() {
+  const b = document.getElementById('guideBody');
+  const a = document.getElementById('guideArrow');
+  b.classList.toggle('open');
+  a.textContent = b.classList.contains('open') ? '▲' : '▼';
+}
+
+// ── INIT ──
+document.getElementById('waBtn').href = `https://wa.me/${WA}`;
+document.getElementById('modal').addEventListener('click', e => { if(e.target===e.currentTarget) closeM(); });
+render();
+</script>
+</body>
+</html>
