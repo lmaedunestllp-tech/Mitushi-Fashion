@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Mitushi Fashion – Order Tracking</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rose:#c2185b;--rose-d:#880e4f;--rose-l:#fce4ec;
+  --gold:#f9a825;--cream:#fff9f5;--deep:#1a0a0f;--gray:#777;
+  --green:#2e7d32;--green-l:#e8f5e9;
+  --orange:#e65100;--orange-l:#fff3e0;
+  --blue:#1565c0;--blue-l:#e3f2fd;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--deep);min-height:100vh;}
+
+/* HEADER */
+.hdr{
+  background:linear-gradient(135deg,#6d0032,var(--rose-d),var(--rose));
+  padding:16px 18px 14px;text-align:center;
+  box-shadow:0 6px 24px rgba(136,14,79,.4);
+}
+.hdr-back{
+  display:inline-flex;align-items:center;gap:6px;
+  color:rgba(255,255,255,.8);font-size:12px;font-weight:600;
+  text-decoration:none;margin-bottom:8px;
+  background:rgba(255,255,255,.15);padding:5px 12px;border-radius:20px;
+}
+.hdr-name{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:#fff;}
+.hdr-name em{color:var(--gold);font-style:italic;}
+.hdr-sub{font-size:11px;color:rgba(255,255,255,.72);margin-top:3px;letter-spacing:.8px;}
+
+/* SEARCH BOX */
+.search-wrap{padding:20px 16px 0;}
+.search-box{
+  background:#fff;border-radius:14px;
+  border:2px solid #f0d0dc;padding:14px 16px;
+  box-shadow:0 2px 12px rgba(194,24,91,.08);
+}
+.search-box h3{font-size:14px;font-weight:700;color:var(--rose-d);margin-bottom:10px;}
+.inp-row{display:flex;gap:8px;}
+.inp-row input{
+  flex:1;border:2px solid #f0d0dc;border-radius:10px;
+  padding:10px 13px;font-family:'DM Sans',sans-serif;
+  font-size:14px;color:var(--deep);outline:none;
+  transition:border-color .2s;
+}
+.inp-row input:focus{border-color:var(--rose);}
+.btn-track{
+  background:linear-gradient(90deg,var(--rose-d),var(--rose));
+  color:#fff;border:none;border-radius:10px;
+  padding:10px 18px;font-family:'DM Sans',sans-serif;
+  font-size:14px;font-weight:700;cursor:pointer;
+  white-space:nowrap;
+}
+
+/* RESULT AREA */
+.result{padding:16px;}
+
+/* NOT FOUND */
+.not-found{
+  background:#fff;border-radius:16px;
+  border:2px solid #f5dde8;padding:30px 20px;
+  text-align:center;
+}
+.not-found .emo{font-size:48px;margin-bottom:10px;}
+.not-found h3{font-size:16px;font-weight:700;color:var(--rose-d);margin-bottom:6px;}
+.not-found p{font-size:13px;color:var(--gray);line-height:1.6;}
+
+/* ORDER CARD */
+.order-card{
+  background:#fff;border-radius:16px;
+  border:2px solid #f5dde8;overflow:hidden;
+  box-shadow:0 4px 20px rgba(194,24,91,.08);
+  margin-bottom:14px;
+}
+
+/* Status Header */
+.status-header{padding:16px 18px;display:flex;align-items:center;gap:12px;}
+.status-header.received {background:var(--blue-l);}
+.status-header.confirmed{background:var(--green-l);}
+.status-header.packed   {background:#f3e5f5;}
+.status-header.dispatch {background:var(--orange-l);}
+.status-header.delivered{background:var(--green-l);}
+.status-header.cancelled{background:#ffebee;}
+
+.st-ico{font-size:32px;}
+.st-info{}
+.st-label{font-size:11px;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:.8px;}
+.st-main{font-size:18px;font-weight:800;color:var(--deep);}
+.st-main.received {color:var(--blue);}
+.st-main.confirmed{color:var(--green);}
+.st-main.packed   {color:#6a1b9a;}
+.st-main.dispatch {color:var(--orange);}
+.st-main.delivered{color:var(--green);}
+.st-main.cancelled{color:#c62828;}
+
+/* Order Details */
+.order-details{padding:14px 18px;border-top:1.5px solid var(--rose-l);}
+.det-title{font-size:12px;font-weight:700;color:var(--rose-d);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;}
+.det-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.det-item{}
+.det-lbl{font-size:10px;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px;}
+.det-val{font-size:13px;font-weight:700;color:var(--deep);}
+.det-val.price{color:var(--rose-d);font-size:15px;}
+
+/* Timeline */
+.timeline{padding:16px 18px;border-top:1.5px solid var(--rose-l);}
+.tl-title{font-size:12px;font-weight:700;color:var(--rose-d);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;}
+.tl-item{display:flex;gap:12px;position:relative;padding-bottom:16px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item:not(:last-child)::before{
+  content:'';position:absolute;left:14px;top:28px;
+  width:2px;height:calc(100% - 12px);
+  background:#f0d0dc;
+}
+.tl-item.done:not(:last-child)::before{background:var(--green);}
+
+.tl-dot{
+  min-width:28px;height:28px;border-radius:50%;
+  border:2.5px solid #f0d0dc;background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;flex-shrink:0;position:relative;z-index:1;
+}
+.tl-item.done .tl-dot{
+  background:var(--green);border-color:var(--green);
+  color:#fff;font-size:11px;font-weight:800;
+}
+.tl-item.current .tl-dot{
+  background:var(--rose);border-color:var(--rose);
+  color:#fff;animation:dotPulse 1.5s infinite;
+}
+@keyframes dotPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(194,24,91,.4);}
+  50%{box-shadow:0 0 0 8px rgba(194,24,91,0);}
+}
+
+.tl-content{}
+.tl-label{font-size:13.5px;font-weight:700;color:var(--deep);}
+.tl-item.done .tl-label{color:var(--green);}
+.tl-item.current .tl-label{color:var(--rose-d);}
+.tl-item.pending .tl-label{color:#bbb;}
+.tl-date{font-size:11px;color:var(--gray);margin-top:1px;}
+.tl-item.pending .tl-date{color:#ddd;}
+
+/* Note */
+.order-note{
+  margin:0 18px 16px;
+  background:linear-gradient(90deg,var(--gold),#ffca28);
+  border-radius:10px;padding:10px 14px;
+  display:flex;gap:8px;align-items:center;
+}
+.order-note p{font-size:12.5px;font-weight:600;color:var(--deep);}
+
+/* WA Contact */
+.wa-contact{
+  margin:0 18px 16px;
+  background:linear-gradient(90deg,#25D366,#128C7E);
+  border-radius:12px;padding:12px 16px;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+.wa-contact p{font-size:12px;color:#fff;font-weight:600;}
+.wa-contact a{
+  background:#fff;color:#128C7E;
+  border-radius:8px;padding:7px 14px;
+  font-size:12px;font-weight:800;text-decoration:none;
+  white-space:nowrap;
+}
+
+/* EMPTY / LOADING */
+.msg-box{padding:40px 20px;text-align:center;}
+.msg-box .emo{font-size:52px;margin-bottom:12px;}
+.msg-box p{font-size:14px;color:var(--gray);}
+
+/* FOOTER */
+.footer{text-align:center;padding:20px;font-size:11px;color:#aaa;border-top:1px solid #f5dde8;}
+.footer strong{color:var(--rose);}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div><a class="hdr-back" href="index.html">← Collection Dekho</a></div>
+  <div class="hdr-name">Mitushi <em>Fashion</em></div>
+  <div class="hdr-sub">📦 Order Tracking</div>
+</div>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <div class="search-box">
+    <h3>🔍 Apna Order Track Karo</h3>
+    <div class="inp-row">
+      <input type="text" id="orderInput" placeholder="Order ID daalo — jaise MF001" maxlength="10">
+      <button class="btn-track" onclick="trackOrder()">Track</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div class="result" id="result">
+  <div class="msg-box">
+    <div class="emo">📦</div>
+    <p>Order ID daalo aur Track karo</p>
+  </div>
+</div>
+
+<div class="footer">
+  <strong>Mitushi Fashion</strong> · Handcrafted Kurtis from Home · Pune<br>
+  <span>Koi problem? WhatsApp karo: <strong>+91-95036 77200</strong></span>
+</div>
+
+<script src="orders.js"></script>
+<script>
+const statusConfig = {
+  received:  { ico:'📋', label:'Order Received',     color:'received'  },
+  confirmed: { ico:'✅', label:'Order Confirmed',    color:'confirmed' },
+  packed:    { ico:'📦', label:'Order Packed',       color:'packed'    },
+  dispatch:  { ico:'🚚', label:'Out for Delivery',   color:'dispatch'  },
+  delivered: { ico:'🎉', label:'Delivered!',         color:'delivered' },
+  cancelled: { ico:'❌', label:'Cancelled',          color:'cancelled' },
+};
+
+// Auto-track from URL param
+window.onload = function() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('order');
+  if (id) {
+    document.getElementById('orderInput').value = id.toUpperCase();
+    trackOrder();
+  }
+};
+
+function trackOrder() {
+  const input = document.getElementById('orderInput').value.trim().toUpperCase();
+  const result = document.getElementById('result');
+
+  if (!input) {
+    result.innerHTML = `<div class="msg-box"><div class="emo">⚠️</div><p>Order ID daalo pehle!</p></div>`;
+    return;
+  }
+
+  const order = orders.find(o => o.id.toUpperCase() === input);
+
+  if (!order) {
+    result.innerHTML = `
+      <div class="not-found">
+        <div class="emo">🔍</div>
+        <h3>Order Nahi Mila</h3>
+        <p>Order ID <strong>${input}</strong> nahi mila.<br><br>
+        Sahi Order ID check karo — jo WhatsApp pe bheja tha.<br>
+        Ya seedha WhatsApp pe poochho! 📱</p>
+      </div>`;
+    return;
+  }
+
+  const cfg = statusConfig[order.status] || statusConfig.received;
+
+  // Build timeline
+  const statusOrder = ['received','confirmed','packed','dispatch','delivered'];
+  const currentIdx  = statusOrder.indexOf(order.status);
+
+  const timelineHTML = order.timeline.map((t, i) => {
+    const isDone    = t.done;
+    const isCurrent = isDone && (i === order.timeline.filter(x=>x.done).length - 1) && order.status !== 'delivered';
+    const cls       = isDone ? (isCurrent ? 'current' : 'done') : 'pending';
+    const dotContent= isDone ? '✓' : (i + 1);
+    return `
+      <div class="tl-item ${cls}">
+        <div class="tl-dot">${dotContent}</div>
+        <div class="tl-content">
+          <div class="tl-label">${t.label}</div>
+          ${t.date ? `<div class="tl-date">🕐 ${t.date}</div>` : '<div class="tl-date">—</div>'}
+        </div>
+      </div>`;
+  }).join('');
+
+  result.innerHTML = `
+    <div class="order-card">
+
+      <!-- Status Header -->
+      <div class="status-header ${cfg.color}">
+        <div class="st-ico">${cfg.ico}</div>
+        <div class="st-info">
+          <div class="st-label">Current Status</div>
+          <div class="st-main ${cfg.color}">${cfg.label}</div>
+        </div>
+      </div>
+
+      <!-- Order Details -->
+      <div class="order-details">
+        <div class="det-title">📋 Order Details</div>
+        <div class="det-grid">
+          <div class="det-item">
+            <div class="det-lbl">Order ID</div>
+            <div class="det-val">${order.id}</div>
+          </div>
+          <div class="det-item">
+            <div class="det-lbl">Order Date</div>
+            <div class="det-val">${order.orderDate}</div>
+          </div>
+          <div class="det-item">
+            <div class="det-lbl">Customer</div>
+            <div class="det-val">${order.customerName}</div>
+          </div>
+          <div class="det-item">
+            <div class="det-lbl">Amount</div>
+            <div class="det-val price">₹${order.amount}</div>
+          </div>
+          <div class="det-item">
+            <div class="det-lbl">Kurti</div>
+            <div class="det-val">${order.product}</div>
+          </div>
+          <div class="det-item">
+            <div class="det-lbl">Size / Qty</div>
+            <div class="det-val">${order.size} · ${order.qty} pcs</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline">
+        <div class="tl-title">🗓️ Order Journey</div>
+        ${timelineHTML}
+      </div>
+
+      <!-- Note -->
+      ${order.note ? `
+      <div class="order-note">
+        <span>💬</span>
+        <p>${order.note}</p>
+      </div>` : ''}
+
+      <!-- WA Contact -->
+      <div class="wa-contact">
+        <p>Koi sawaal? WhatsApp karo!</p>
+        <a href="https://wa.me/919503677200?text=Hi! Mera order ${order.id} ke baare mein poochna tha." target="_blank">WhatsApp karo 💬</a>
+      </div>
+
+    </div>`;
+}
+
+// Enter key support
+document.getElementById('orderInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') trackOrder();
+});
+</script>
+</body>
+</html>
