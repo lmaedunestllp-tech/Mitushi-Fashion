@@ -14,7 +14,7 @@
 //
 // ============================================================
 
-const WHATSAPP_NUMBER = "919503677200"; // Aapka WhatsApp number (91 + 10 digit)
+const WHATSAPP_NUMBER = "917976964364"; // Aapka WhatsApp number (91 + 10 digit)
 
 const products = [
   {
@@ -38,7 +38,7 @@ const products = [
     originalPrice: 999,
     fabric: "Rayon",
     desc: "Beautiful embroidery work, rayon fabric, party ready",
-    photo: "1CyOzR3LaQ9mNsS4tU6wXyZa", // 👈 Yahan apna Google Drive File ID daalo
+    photo: "1dmaicgdAa4SB0p4nrtqRcXc4iPEFHHfy", // 👈 Yahan apna Google Drive File ID daalo
     colors: ["Blue", "White", "Green"],
     sizes: ["S", "M", "L", "XL"],
     category: "festive",
