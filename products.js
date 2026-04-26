@@ -19,7 +19,7 @@ const WHATSAPP_NUMBER = "917976964364"; // Aapka WhatsApp number (91 + 10 digit)
 const products = [
   {
     id: 1,
-    name: "Floral Anarkali Kurti",
+    name: "Sleeveless Collar Neck Kurti",
     price: 701,
     originalPrice: 779,
     fabric: "Cotton",
