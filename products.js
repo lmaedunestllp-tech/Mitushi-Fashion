@@ -1,20 +1,8 @@
 // ============================================================
 //  MITUSHI FASHION - PRODUCTS DATA
-//  Yahan apni kurtis add karo
-//  Google Drive photo kaise add karein - neeche guide hai
-// ============================================================
-//
-//  📸 GOOGLE DRIVE PHOTO LINK KAISE BANAYEIN:
-//  1. Google Drive mein photo open karo
-//  2. Right click → "Share" → "Anyone with the link" select karo
-//  3. Link copy karo — kuch aisa dikhega:
-//     https://drive.google.com/file/d/XXXXXXXXXXXXXXX/view?usp=sharing
-//  4. Us link mein se sirf XXXXXXXXXXXXXXX (File ID) copy karo
-//  5. Neeche photo field mein paste karo: "XXXXXXXXXXXXXXX"
-//
 // ============================================================
 
-const WHATSAPP_NUMBER = "917976964364"; // Aapka WhatsApp number (91 + 10 digit)
+const WHATSAPP_NUMBER = "919503677200"; // 91 + aapka 10 digit number
 
 const products = [
   {
@@ -23,13 +11,31 @@ const products = [
     price: 701,
     originalPrice: 779,
     fabric: "Cotton",
-    desc: "Easy to Wear, Premium Comfort Fabric, wide Palazzos",
-    photo: "16E7lzestvZRtQ_-gt_eaZ_SVjaTBNoac", // 👈 Yahan apna Google Drive File ID daalo
-    colors: ["Peacock Green"],
-    sizes: ["M", "L", "XL",],
+    desc: "Collar neck, A-line silhouette with palazzo",
+    photo: "1dmaicgdAa4SB0p4nrtqRcXc4iPEFHHfy",
+    colors: ["Teal", "Navy", "Black"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
     category: "casual",
     badge: "NEW",
-    inStock: true
+    inStock: true,
+    details: {
+      features: [
+        "Sleeveless Kurti with Collar Neck",
+        "Front Button Closure",
+        "Flowy A-Line Silhouette",
+        "Comes with Wide Palazzo",
+        "Premium Comfort Fabric"
+      ],
+      specs: {
+        "Fabric":   "Pure Cotton",
+        "Style":    "A-Line",
+        "Neck":     "Collar Neck",
+        "Sleeve":   "Sleeveless",
+        "Includes": "Kurti + Palazzo",
+        "Occasion": "Casual / Daily"
+      },
+      washCare: "Hand wash recommended · Do not bleach"
+    }
   },
   {
     id: 2,
@@ -38,12 +44,27 @@ const products = [
     originalPrice: 999,
     fabric: "Rayon",
     desc: "Beautiful embroidery work, rayon fabric, party ready",
-    photo: "1l267jINpgysXyzr0Ml2Gwv788GU558V5", // 👈 Yahan apna Google Drive File ID daalo
+    photo: "GOOGLE_DRIVE_FILE_ID_2",
     colors: ["Blue", "White", "Green"],
     sizes: ["S", "M", "L", "XL"],
     category: "festive",
     badge: "HOT",
-    inStock: true
+    inStock: true,
+    details: {
+      features: [
+        "Beautiful Hand Embroidery Work",
+        "Straight Cut Design",
+        "Lightweight Rayon Fabric",
+        "Perfect for Festive Occasions"
+      ],
+      specs: {
+        "Fabric":   "Rayon",
+        "Style":    "Straight Cut",
+        "Sleeve":   "3/4 Sleeve",
+        "Occasion": "Festive / Party"
+      },
+      washCare: "Dry clean recommended"
+    }
   },
   {
     id: 3,
@@ -52,12 +73,26 @@ const products = [
     originalPrice: 450,
     fabric: "Cotton",
     desc: "Comfortable pure cotton, everyday wear, easy to wash",
-    photo: "12FtGc9eMG3WTl52vW1ne2bymubVpZgi_", // 👈 Yahan apna Google Drive File ID daalo
+    photo: "GOOGLE_DRIVE_FILE_ID_3",
     colors: ["Orange", "Cream", "Peach"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     category: "casual",
     badge: "",
-    inStock: true
+    inStock: true,
+    details: {
+      features: [
+        "100% Pure Cotton",
+        "Comfortable for all day wear",
+        "Easy to wash & maintain",
+        "Breathable fabric"
+      ],
+      specs: {
+        "Fabric":   "Pure Cotton",
+        "Style":    "Regular Fit",
+        "Occasion": "Daily Wear"
+      },
+      washCare: "Machine wash · Cold water"
+    }
   },
   {
     id: 4,
@@ -66,12 +101,26 @@ const products = [
     originalPrice: 1199,
     fabric: "Silk",
     desc: "Premium silk fabric, perfect for festivals & parties",
-    photo: "1Al0Y9JEKnOlXrvPzBLEryfWpomAkxtyr", // 👈 Yahan apna Google Drive File ID daalo
+    photo: "GOOGLE_DRIVE_FILE_ID_4",
     colors: ["Maroon", "Gold", "Navy"],
     sizes: ["S", "M", "L", "XL"],
     category: "festive",
     badge: "SALE",
-    inStock: true
+    inStock: true,
+    details: {
+      features: [
+        "Premium Soft Silk Fabric",
+        "Rich Festive Look",
+        "Beautiful Color Options",
+        "Perfect for Diwali & Weddings"
+      ],
+      specs: {
+        "Fabric":   "Silk",
+        "Style":    "Straight Cut",
+        "Occasion": "Festive / Wedding"
+      },
+      washCare: "Dry clean only"
+    }
   },
   {
     id: 5,
@@ -80,12 +129,26 @@ const products = [
     originalPrice: 599,
     fabric: "Rayon",
     desc: "Trendy block print, lightweight rayon, very comfortable",
-    photo: "1FbRcU6OdT2pQmV7wX9zAbCd", // 👈 Yahan apna Google Drive File ID daalo
+    photo: "GOOGLE_DRIVE_FILE_ID_5",
     colors: ["Purple", "Teal", "Pink"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     category: "casual",
     badge: "",
-    inStock: true
+    inStock: true,
+    details: {
+      features: [
+        "Trendy Block Print Design",
+        "Lightweight Rayon Fabric",
+        "Flowy & Comfortable",
+        "Versatile — Casual to Semi-Formal"
+      ],
+      specs: {
+        "Fabric":   "Rayon",
+        "Print":    "Block Print",
+        "Occasion": "Casual / Office"
+      },
+      washCare: "Hand wash · Mild detergent"
+    }
   },
   {
     id: 6,
@@ -94,29 +157,46 @@ const products = [
     originalPrice: 850,
     fabric: "Cotton",
     desc: "Gujarati mirror work, traditional ethnic look, very pretty",
-    photo: "1GcSdV7PeU3qRnW8xY0aBcDe", // 👈 Yahan apna Google Drive File ID daalo
+    photo: "GOOGLE_DRIVE_FILE_ID_6",
     colors: ["Blue", "Green", "Orange"],
     sizes: ["S", "M", "L", "XL"],
     category: "festive",
     badge: "",
-    inStock: true
+    inStock: true,
+    details: {
+      features: [
+        "Traditional Gujarati Mirror Work",
+        "Handcrafted Design",
+        "Rich Ethnic Look",
+        "Perfect for Navratri & Festivals"
+      ],
+      specs: {
+        "Fabric":   "Cotton",
+        "Work":     "Mirror Embroidery",
+        "Style":    "A-Line",
+        "Occasion": "Festive / Traditional"
+      },
+      washCare: "Hand wash only · Handle with care"
+    }
   }
 ];
 
 // ============================================================
-//  NAYI KURTI ADD KARNE KA TARIKA:
-//  {
-//    id: 7,                          ← next number
-//    name: "Kurti ka naam",
-//    price: 599,                     ← aapka price
-//    originalPrice: 799,             ← crossed price (thoda zyada dikhao)
-//    fabric: "Cotton",               ← Cotton / Rayon / Silk / Georgette
-//    desc: "Short description",
-//    photo: "GOOGLE_DRIVE_FILE_ID",  ← Drive ka File ID
-//    colors: ["Red", "Blue"],
-//    sizes: ["S", "M", "L", "XL"],
-//    category: "casual",             ← casual / festive / party
-//    badge: "NEW",                   ← NEW / HOT / SALE / "" (khaali)
-//    inStock: true
-//  },
+//  DETAILS FIELD GUIDE:
+//
+//  details: {
+//    features: [
+//      "Feature 1",
+//      "Feature 2",
+//    ],
+//    specs: {
+//      "Fabric":   "Cotton",
+//      "Style":    "A-Line",
+//      "Neck":     "Round Neck",
+//      "Sleeve":   "Full Sleeve",
+//      "Includes": "Only Kurti",
+//      "Occasion": "Casual"
+//    },
+//    washCare: "Hand wash"
+//  }
 // ============================================================
