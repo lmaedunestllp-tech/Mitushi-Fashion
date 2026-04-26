@@ -24,7 +24,7 @@ const products = [
     originalPrice: 650,
     fabric: "Cotton",
     desc: "Soft cotton, summer floral print, perfect for daily wear",
-    photo: "1BxNyQ2KzP8lMnR3sT5vWxYz", // 👈 Yahan apna Google Drive File ID daalo
+    photo: "16E7lzestvZRtQ_-gt_eaZ_SVjaTBNoac", // 👈 Yahan apna Google Drive File ID daalo
     colors: ["Red", "Pink", "Yellow"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     category: "casual",
@@ -38,7 +38,7 @@ const products = [
     originalPrice: 999,
     fabric: "Rayon",
     desc: "Beautiful embroidery work, rayon fabric, party ready",
-    photo: "1dmaicgdAa4SB0p4nrtqRcXc4iPEFHHfy", // 👈 Yahan apna Google Drive File ID daalo
+    photo: "1l267jINpgysXyzr0Ml2Gwv788GU558V5", // 👈 Yahan apna Google Drive File ID daalo
     colors: ["Blue", "White", "Green"],
     sizes: ["S", "M", "L", "XL"],
     category: "festive",
@@ -52,7 +52,7 @@ const products = [
     originalPrice: 450,
     fabric: "Cotton",
     desc: "Comfortable pure cotton, everyday wear, easy to wash",
-    photo: "1DzPaS4MbR0nOtT5uV7xYzAb", // 👈 Yahan apna Google Drive File ID daalo
+    photo: "12FtGc9eMG3WTl52vW1ne2bymubVpZgi_", // 👈 Yahan apna Google Drive File ID daalo
     colors: ["Orange", "Cream", "Peach"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     category: "casual",
@@ -66,7 +66,7 @@ const products = [
     originalPrice: 1199,
     fabric: "Silk",
     desc: "Premium silk fabric, perfect for festivals & parties",
-    photo: "1EaQbT5NcS1oPlU6vW8yZaBc", // 👈 Yahan apna Google Drive File ID daalo
+    photo: "1Al0Y9JEKnOlXrvPzBLEryfWpomAkxtyr", // 👈 Yahan apna Google Drive File ID daalo
     colors: ["Maroon", "Gold", "Navy"],
     sizes: ["S", "M", "L", "XL"],
     category: "festive",
